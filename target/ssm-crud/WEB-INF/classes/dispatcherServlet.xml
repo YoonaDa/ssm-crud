@@ -24,15 +24,13 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--两个标准配置-->
     <!--将SpringMVC不能处理的请求交给Tomcat-->
+    <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
+
     <!--能支持SpringMVC更高级的一些功能，JSR303校验，快捷的ajax,映射动态请求-->
+    <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
-
-    <!--&lt;!&ndash; 对静态资源的访问 &ndash;&gt;-->
-    <!--<mvc:resources mapping="/static/**" location="/static/" />-->
-
 
 
 

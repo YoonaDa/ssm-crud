@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<jsp:forward page="/emps"></jsp:forward>--%>
+<%--跳转到该拦截--%>
+<jsp:forward page="/emps"/>
 <html>
 <head>
     <title>Title</title>
@@ -10,6 +11,5 @@
 </head>
 
 <body>
-<h2 style="text-align: center"><button type="button" class="btn btn-info">你好</button></h2>
 </body>
 </html>

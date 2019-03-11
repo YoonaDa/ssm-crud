@@ -78,8 +78,8 @@
     <result column="gender" jdbcType="CHAR" property="gender" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="d_id" jdbcType="INTEGER" property="dId" />
-    <!--指定联合查询的部门字段的封装-->
-    <association property="department" javaType="com.crud.bean.Employee">
+    <!--指定联合查询的部门字段的封装,注意javaType="com.crud.bean.Department"-->
+    <association property="department" javaType="com.crud.bean.Department">
       <id column="dept_id" property="deptId"/>
       <result column="dept_name" property="deptName"/>
     </association>
