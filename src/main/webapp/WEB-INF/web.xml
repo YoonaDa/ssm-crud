@@ -22,7 +22,7 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:applicationContext.xml</param-value>
+      <param-value>classpath:dispatcherServlet.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
     <!-- 配置springMVC需要加载的配置文件-->

@@ -52,11 +52,7 @@
         <constructor-arg name="executorType" value="BATCH"/>
     </bean>
 
-
     <!--============================================================================-->
-
-
-
 
     <!--事务控制的配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -81,6 +77,7 @@
             <tx:method name="get*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
+
 
 
 </beans>

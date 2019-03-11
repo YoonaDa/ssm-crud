@@ -119,6 +119,14 @@
       <scope>compile</scope>
     </dependency>
 
+    <!--引入pageHelper分页插件-->
+    <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+
 
   </dependencies>
 

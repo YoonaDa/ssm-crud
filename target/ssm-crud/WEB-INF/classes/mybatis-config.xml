@@ -10,4 +10,8 @@
     <typeAliases>
         <package name="com.crud.bean"/>
     </typeAliases>
+    <!--添加PageHelper插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
 </configuration>
