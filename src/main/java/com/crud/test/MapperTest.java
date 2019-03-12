@@ -51,7 +51,7 @@ public class MapperTest {
 //        employeeMapper.insertSelective(new Employee(null,"林允儿","女",null,2));
 //        3.批量新增信息
 //        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-//        for (int i=0;i<100;i++){
+//        for (int i=0;i<200;i++){
 //            String uid = UUID.randomUUID().toString().substring(0,5)+i;
 //            mapper.insertSelective(new Employee(null,uid,"男",uid+"@163.com",1));
 //        }
