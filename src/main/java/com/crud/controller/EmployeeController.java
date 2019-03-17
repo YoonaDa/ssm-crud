@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,6 +65,18 @@ public class EmployeeController {
         List<Employee> emps = employeeService.getAll();
         PageInfo page = new PageInfo(emps,6);
         return Msg.success().add("pageInfo",page);
+    }
+
+    /**
+     * 发送post请求保存(新增)
+     * @param employee
+     * @return
+     */
+    @PostMapping("/emp")
+    @ResponseBody
+    public Msg saveEmp(Employee employee){
+        employeeService.saveEmp(employee);
+        return Msg.success();
     }
 
 
