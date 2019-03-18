@@ -266,8 +266,19 @@
         var navEle = $("<nav></nav>").append(ul);
         navEle.appendTo("#page_nav_area");
     }
+
+    function reset_form(ele){
+        $(ele)[0].reset();
+        //清空表单样式
+        $(ele).find("*").removeClass("has-error has-success");
+        $(ele).find(".help-block").text("");
+
+    }
+
     //点击新增按钮弹出模态框
     $("#emp_add_model_btn").click(function () {
+        //表单重置
+        reset_form("#empAddModal form");
         //发送ajax请求，查出部门信息，显示下拉列表中
         getDepts();
         $("#empAddModal").modal({
@@ -310,7 +321,7 @@
         var email = $("#email_add_input").val();
         var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
         if (!regEmail.test(email)) {
-            show_validate_msg("#email_add_input", "error", "用户名可以是2~5位中文或者6~16位英文");
+            show_validate_msg("#email_add_input", "error", "邮箱不符合标准");
             return false;
         } else {
             show_validate_msg("#email_add_input", "success", "");
@@ -330,6 +341,30 @@
             $(ele).next("span").text(msg);
         }
     }
+
+    //校验用户名是否可用
+    $("#empName_add_input").change(function () {
+        var empName = this.value;
+       //发送ajax请求校验用户名是否可用
+        $.ajax({
+            url:'${APP_PATH}/checkUser',
+            data:'empName='+empName,
+            type:'POST',
+            success: function (result) {
+                if (result.code === 400){
+                    show_validate_msg("#empName_add_input","error",result.extend.va_msg);
+                    //给其自定义一个属性
+                    $("#emp_save_btn").attr("ajax-va","error");
+                }else if (result.code ===200) {
+                    show_validate_msg("#empName_add_input","success","用户名可用");
+                    $("#emp_save_btn").attr("ajax-va","success");
+                }
+            }
+
+        })
+
+    });
+
     //新增modal的确定保存按钮
     $("#emp_save_btn").click(function () {
         //1、模态框中填写的表单数据提交给服务器进行保存
@@ -337,7 +372,10 @@
         if (!validate_add_form()) {
             return false;
         }
-        ;
+        //1、判断之前的ajax用户名校验是否成功.如果成功。
+        if ($(this).attr("ajax-va")==="error"){
+            return false;
+        }
         //2、发送ajax请求保存员工
         $.ajax({
             url: "${APP_PATH}/emp",

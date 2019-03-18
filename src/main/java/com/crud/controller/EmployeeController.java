@@ -79,6 +79,27 @@ public class EmployeeController {
         return Msg.success();
     }
 
+    /**
+     * 校验用户名是否可以使用
+     * @param empName
+     * @return
+     */
+    @RequestMapping("/checkUser")
+    @ResponseBody
+    public Msg checkUser(@RequestParam("empName") String empName){
+        //先判断用户名是否合法的正则表达式
+        String regx="(^[a-zA-Z0-9_-]{3,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";
+        if (!empName.matches(regx)){
+            return Msg.fail().add("va_msg","用户名可以是2~5位中文或者6~16位英文");
+        }
+        boolean b =employeeService.checkUser(empName);
+        if (b){
+            return Msg.success();
+        }else {
+            return Msg.fail().add("va_msg","用户名不可用");
+        }
+    }
+
 
 
 }
